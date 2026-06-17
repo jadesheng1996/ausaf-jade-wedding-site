@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>RSVP — Ausaf &amp; Jade</title>
+<meta name="description" content="RSVP to the wedding of Ausaf & Jade. Confirm attendance, party size, costume, and dietary needs." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<nav class="site-nav"><div class="nav-inner">
+  <a href="index.html">✦ Hearth</a>
+  <a href="story.html">The Chronicle</a>
+  <a href="details.html">The Decree</a>
+  <a href="journey.html">The Journey</a>
+  <a href="festivities.html">The Revels</a>
+  <a href="rsvp.html">The Reply</a>
+</div></nav>
+<section class="page-section narrow">
+  <div class="divider"><span class="line"></span><span class="label">The Reply</span><span class="line"></span></div>
+  <div class="center mb-3">
+    <h2 class="section-title">Pledge Thy Presence</h2>
+    <p class="section-subtitle">send word by the first of August</p>
+  </div>
+  <div class="parchment-card" style="padding:2rem">
+    <form class="rsvp" novalidate>
+      <div class="row two">
+        <div>
+          <label class="field-label" for="name">Your true name</label>
+          <input id="name" name="name" type="text" placeholder="Sir / Lady…" maxlength="100" required />
+        </div>
+        <div>
+          <label class="field-label" for="email">Raven address</label>
+          <input id="email" name="email" type="email" placeholder="you@kingdom.com" maxlength="255" required />
+        </div>
+      </div>
+      <div class="row two">
+        <div>
+          <label class="field-label">Will you embark?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="attending" value="yes" checked /> Aye, I sail</label>
+            <label><input type="radio" name="attending" value="no" /> Alas, I cannot</label>
+          </div>
+        </div>
+        <div>
+          <label class="field-label" for="guests">Souls in your party</label>
+          <input id="guests" name="guests" type="number" min="1" max="8" value="1" />
+        </div>
+      </div>
+      <div>
+        <label class="field-label" for="costume">Your chosen guise</label>
+        <input id="costume" name="costume" type="text" placeholder="Bard, dragon-slayer, woodland fae…" maxlength="200" />
+      </div>
+      <div>
+        <label class="field-label">Provisions &amp; dietary needs</label>
+        <div class="diet-grid">
+          <button type="button" class="diet" data-diet="Vegetarian">Vegetarian</button>
+          <button type="button" class="diet" data-diet="Vegan">Vegan</button>
+          <button type="button" class="diet" data-diet="Gluten-free">Gluten-free</button>
+          <button type="button" class="diet" data-diet="Halal">Halal</button>
+          <button type="button" class="diet" data-diet="Nut allergy">Nut allergy</button>
+          <button type="button" class="diet" data-diet="Dairy-free">Dairy-free</button>
+        </div>
+        <input type="text" name="dietaryOther" placeholder="Other allergies or notes for the kitchen…" maxlength="200" style="margin-top:1rem" />
+      </div>
+      <div>
+        <label class="field-label" for="message">A word for the betrothed</label>
+        <textarea id="message" name="message" rows="3" maxlength="500" placeholder="Leave a blessing or a jest…"></textarea>
+      </div>
+      <p class="error"></p>
+      <div class="center">
+        <button type="submit" class="btn">Seal with Wax ✦ Send Raven</button>
+      </div>
+    </form>
+
+    <div id="rsvp-success" class="success hidden">
+      <div class="big mb-2">Sealed &amp; Sent!</div>
+      <p class="muted italic" style="font-size:1.15rem;max-width:30rem;margin:0 auto">
+        Your raven is on its way. We shall raise a tankard in your honour the moment it lands. Until the quest begins —
+      </p>
+      <p class="eyebrow mt-2">⚔ FAREWELL, TRAVELER ⚔</p>
+      <div class="mt-3">
+        <button class="btn dark" data-ics>✦ Mark the Date in your Almanac ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+<nav class="page-nav">
+  <a href="festivities.html">← The Revels</a>
+  <a href="index.html">Return to the Hearth</a>
+</nav>
+<footer class="site-footer">Ausaf &amp; Jade ✦ A Fellowship of Four <span class="hand">the map is drawn — now we await thee.</span></footer>
+<script src="main.js"></script>
+</body></html>
