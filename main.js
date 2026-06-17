@@ -124,7 +124,7 @@ function initRsvp() {
     };
 
     try {
-      const res = await fetch("https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID", {
+      const res = await fetch("https://formspree.io/f/xwvjjrel", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
