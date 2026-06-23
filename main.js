@@ -27,8 +27,8 @@ document.querySelectorAll("[data-sketch]").forEach((el) => {
 
 // ---------- Journey map (journey.html) ----------
 const PINS = [
-  { id: "ceremony", label: "I", title: "The Vows", place: "Anderson Japanese Gardens", address: "318 Spring Creek Rd, Rockford, IL 61107", blurb: "Stone lanterns, koi ponds, and a quiet garden where two parties of adventurers swear their alliance.", time: "Saturday, late afternoon", mapUrl: "https://maps.google.com/?q=Anderson+Japanese+Gardens+Rockford+IL", x: 22, y: 34 },
-  { id: "reception", label: "II", title: "The Feast & Revels", place: "Ethereal Confections", address: "Woodstock, IL", blurb: "A chocolatier's hall transformed into a feast: trivia, games, dancing, karaoke, and sweets fit for a fellowship. (Dry wedding — bring thirst for joy, not ale.)", time: "Saturday eve, until the candles surrender", mapUrl: "https://maps.google.com/?q=Ethereal+Confections+Woodstock+IL", x: 74, y: 64 },
+  { id: "ceremony", label: "I", title: "The Vows", place: "Anderson Japanese Gardens", address: "318 Spring Creek Rd, Rockford, IL 61107", blurb: "Stone lanterns, koi ponds, and a quiet garden where two parties of adventurers swear their alliance.", time: "Saturday, late afternoon", mapUrl: "https://maps.google.com/?q=Anderson+Japanese+Gardens+Rockford+IL", x: 22, y: 39 },
+  { id: "reception", label: "II", title: "The Feast & Revels", place: "Ethereal Confections", address: "Woodstock, IL", blurb: "A chocolatier's hall transformed into a feast: trivia, games, dancing, karaoke, and sweets fit for a fellowship. (Dry wedding — bring thirst for joy, not ale.)", time: "Saturday eve, until the candles surrender", mapUrl: "https://maps.google.com/?q=Ethereal+Confections+Woodstock+IL", x: 74, y: 24 },
 ];
 function initJourney() {
   const stage = document.querySelector("#journey-stage");
@@ -50,7 +50,7 @@ function initJourney() {
           <path d="M22 2 C 10 2 2 11 2 22 C 2 36 22 54 22 54 C 22 54 42 36 42 22 C 42 11 34 2 22 2 Z" fill="currentColor" stroke="var(--ink)" stroke-width="1.5"/>
           <text x="22" y="27" text-anchor="middle" fill="var(--parchment)" font-size="14" font-family="serif" font-weight="bold">${p.label}</text>
         </svg>
-        <span class="pin-label">✗ ${p.place}</span>`;
+        `;
       b.addEventListener("click", () => { active = p.id; render(); });
       stage.appendChild(b);
     });
@@ -163,3 +163,11 @@ function downloadIcs() {
   URL.revokeObjectURL(url);
 }
 document.querySelectorAll("[data-ics]").forEach(b => b.addEventListener("click", downloadIcs));
+
+// ---------- Hero parallax ----------
+const heroBg = document.querySelector(".hero-bg");
+if (heroBg) {
+  window.addEventListener("scroll", () => {
+    heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+  }, { passive: true });
+}
