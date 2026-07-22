@@ -27,8 +27,8 @@ document.querySelectorAll("[data-sketch]").forEach((el) => {
 
 // ---------- Journey map (journey.html) ----------
 const PINS = [
-  { id: "ceremony", label: "I", title: "The Vows", place: "Anderson Japanese Gardens", address: "318 Spring Creek Rd, Rockford, IL 61107", blurb: "Stone lanterns, koi ponds, and a quiet garden where two parties of adventurers swear their alliance.", time: "Saturday, late afternoon", mapUrl: "https://maps.google.com/?q=Anderson+Japanese+Gardens+Rockford+IL", x: 22, y: 39 },
-  { id: "reception", label: "II", title: "The Feast & Revels", place: "Ethereal Confections", address: "Woodstock, IL", blurb: "A chocolatier's hall transformed into a feast: trivia, games, dancing, karaoke, and sweets fit for a fellowship. (Dry wedding — bring thirst for joy, not ale.)", time: "Saturday eve, until the candles surrender", mapUrl: "https://maps.google.com/?q=Ethereal+Confections+Woodstock+IL", x: 74, y: 24 },
+  { id: "ceremony", label: "I", title: "The Vows", place: "Anderson Japanese Gardens", address: "318 Spring Creek Rd, Rockford, IL 61107", blurb: "Stone lanterns, koi ponds, and a quiet garden where two clans shall swear their alliance.", time: "October 9th, 2026 – 4:00PM", mapUrl: "https://maps.google.com/?q=Anderson+Japanese+Gardens+Rockford+IL", x: 22, y: 39 },
+  { id: "reception", label: "II", title: "The Feast & Revels", place: "Ethereal Confections", address: "140 Cass St, Woodstock, IL 60098", blurb: "A chocolatier’s hall transformed into a feast: trivia, games, karaoke, and fellowship shall fill the halls late into the eve.", time: "October 9th, 2026 – 7:00 p.m., until the candles surrender", mapUrl: "https://maps.google.com/?q=Ethereal+Confections+Woodstock+IL", x: 74, y: 24 },
 ];
 function initJourney() {
   const stage = document.querySelector("#journey-stage");
@@ -83,29 +83,16 @@ initJourney();
 function initRsvp() {
   const form = document.querySelector("form.rsvp");
   if (!form) return;
-  const dietGrid = form.querySelector(".diet-grid");
   const errorEl = form.querySelector(".error");
   const successEl = document.querySelector("#rsvp-success");
-  const diet = new Set();
-
-  dietGrid?.querySelectorAll(".diet").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const v = btn.getAttribute("data-diet");
-      if (diet.has(v)) { diet.delete(v); btn.classList.remove("on"); }
-      else { diet.add(v); btn.classList.add("on"); }
-    });
-  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const name = (fd.get("name") || "").toString().trim();
     const email = (fd.get("email") || "").toString().trim();
-    const guests = parseInt(fd.get("guests"), 10);
     if (!name) return showError("A name is required, brave traveler.");
     if (!/^\S+@\S+\.\S+$/.test(email)) return showError("Send us a proper raven address.");
-    if (!Number.isFinite(guests) || guests < 1 || guests > 8) return showError("Party size must be between 1 and 8 souls.");
     errorEl.textContent = "";
 
     const submitBtn = form.querySelector("[type=submit]");
@@ -116,10 +103,9 @@ function initRsvp() {
       name,
       email,
       attending: fd.get("attending"),
-      guests,
       costume: (fd.get("costume") || "").toString().trim(),
-      dietary: [...diet].join(", ") || "none",
-      dietaryOther: (fd.get("dietaryOther") || "").toString().trim(),
+      dietary: (fd.get("dietary") || "").toString().trim(),
+      karaokeSong: (fd.get("karaokeSong") || "").toString().trim(),
       message: (fd.get("message") || "").toString().trim(),
     };
 
@@ -144,16 +130,16 @@ initRsvp();
 
 // ---------- Calendar download ----------
 function downloadIcs() {
-  const dtStart = "20260913T210000Z";
-  const dtEnd   = "20260914T060000Z";
-  const uid = `ausaf-jade-wedding-${Date.now()}@etherealquest`;
+  const dtStart = "20261009T210000Z";
+  const dtEnd   = "20261010T033000Z";
+  const uid = `farooqi-sheng-wedding-${Date.now()}@etherealquest`;
   const ics = [
-    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Ausaf & Jade//Wedding//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH",
+    "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Farooqi & Sheng//Wedding//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH",
     "BEGIN:VEVENT",
     `UID:${uid}`,`DTSTAMP:${dtStart}`,`DTSTART:${dtStart}`,`DTEND:${dtEnd}`,
-    "SUMMARY:Ausaf & Jade — A Quest of Two Parties Becoming One",
-    "DESCRIPTION:Ceremony at Anderson Japanese Gardens (Rockford\\, IL)\\, then reception at Ethereal Confections (Woodstock\\, IL). Costume wedding — medieval/renaissance or space-themed (Star Wars/Dune). Note: this is a dry wedding.",
-    "LOCATION:Anderson Japanese Gardens, 318 Spring Creek Rd, Rockford, IL 61107",
+    "SUMMARY:Wedding: Farooqi & Sheng - Merge of Two Clans",
+    "DESCRIPTION:Ceremony at Anderson Japanese Gardens (Rockford\\, IL)\\, then reception at Ethereal Confections (Woodstock\\, IL). Costume wedding — medieval\\, fantacy or space-themed. Note: this is a dry wedding.",
+    "LOCATION:318 Spring Creek Rd, Rockford, IL 61107",
     "END:VEVENT","END:VCALENDAR",
   ].join("\r\n");
   const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });

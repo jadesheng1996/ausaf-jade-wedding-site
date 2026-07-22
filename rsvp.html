@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>RSVP — Ausaf &amp; Jade</title>
-<meta name="description" content="RSVP to the wedding of Ausaf & Jade. Confirm attendance, party size, costume, and dietary needs." />
+<title>RSVP — Farooqi &amp; Sheng</title>
+<meta name="description" content="RSVP to the wedding of Farooqi & Sheng. Confirm attendance, costume, allergies, and your go-to karaoke song." />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,7 +20,7 @@
   <div class="divider"><img class="line" src="assets/left-line.png" alt="" aria-hidden="true" /><span class="label">The Reply</span><img class="line" src="assets/right-line.png" alt="" aria-hidden="true" /></div>
   <div class="center mb-3">
     <h2 class="section-title">Pledge Thy Presence</h2>
-    <p class="section-subtitle">send word by the first of August</p>
+    <p class="section-subtitle">send word by the 10th of August</p>
   </div>
   <div class="parchment-card" style="padding:2rem">
     <form class="rsvp" novalidate>
@@ -34,34 +34,24 @@
           <input id="email" name="email" type="email" placeholder="you@kingdom.com" maxlength="255" required />
         </div>
       </div>
-      <div class="row two">
-        <div>
-          <label class="field-label">Will you embark?</label>
-          <div class="radio-group">
-            <label><input type="radio" name="attending" value="yes" checked /> Aye, I sail</label>
-            <label><input type="radio" name="attending" value="no" /> Alas, I cannot</label>
-          </div>
-        </div>
-        <div>
-          <label class="field-label" for="guests">Souls in your party</label>
-          <input id="guests" name="guests" type="number" min="1" max="8" value="1" />
+      <div>
+        <label class="field-label">Will you embark?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="attending" value="yes" checked required /> Aye, I sail</label>
+          <label><input type="radio" name="attending" value="no" required /> Alas, I cannot</label>
         </div>
       </div>
       <div>
         <label class="field-label" for="costume">Your chosen guise</label>
-        <input id="costume" name="costume" type="text" placeholder="Bard, dragon-slayer, woodland fae…" maxlength="200" />
+        <input id="costume" name="costume" type="text" placeholder="Bard, knight, Ming dynasty lady, storm trooper…" maxlength="200" />
       </div>
       <div>
-        <label class="field-label">Provisions &amp; dietary needs</label>
-        <div class="diet-grid">
-          <button type="button" class="diet" data-diet="Vegetarian">Vegetarian</button>
-          <button type="button" class="diet" data-diet="Vegan">Vegan</button>
-          <button type="button" class="diet" data-diet="Gluten-free">Gluten-free</button>
-          <button type="button" class="diet" data-diet="Halal">Halal</button>
-          <button type="button" class="diet" data-diet="Nut allergy">Nut allergy</button>
-          <button type="button" class="diet" data-diet="Dairy-free">Dairy-free</button>
-        </div>
-        <input type="text" name="dietaryOther" placeholder="Other allergies or notes for the kitchen…" maxlength="200" style="margin-top:1rem" />
+        <label class="field-label" for="dietary">Allergies or Notes for the Chef</label>
+        <input id="dietary" name="dietary" type="text" maxlength="200" />
+      </div>
+      <div>
+        <label class="field-label" for="karaokeSong">Go-To Karaoke Song</label>
+        <input id="karaokeSong" name="karaokeSong" type="text" placeholder="Never Gonna Give You Up" maxlength="200" />
       </div>
       <div>
         <label class="field-label" for="message">A word for the betrothed</label>
@@ -89,6 +79,6 @@
   <a href="festivities.html">← The Revels</a>
   <a href="index.html">Return to the Hearth</a>
 </nav>
-<footer class="site-footer">Ausaf &amp; Jade ✦ A Fellowship of Four <span class="hand">the map is drawn — now we await thee.</span></footer>
+<footer class="site-footer">Farooqi &amp; Sheng ✦ A Fellowship of Four <span class="hand">the map is drawn — now we await thee.</span></footer>
 <script src="main.js"></script>
 </body></html>
