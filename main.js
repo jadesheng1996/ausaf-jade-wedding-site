@@ -1,3 +1,53 @@
+// ---------- Background music (persists across page navigations) ----------
+function initBgMusic() {
+  const audio = document.querySelector("#bg-music");
+  const toggle = document.querySelector("#music-toggle");
+  if (!audio) return;
+  const TIME_KEY = "bgMusicTime";
+  const MUTED_KEY = "bgMusicMuted";
+
+  const savedTime = parseFloat(sessionStorage.getItem(TIME_KEY));
+  if (!Number.isNaN(savedTime)) {
+    try { audio.currentTime = savedTime; } catch { /* not ready yet */ }
+  }
+  audio.muted = sessionStorage.getItem(MUTED_KEY) === "1";
+
+  function updateToggle() {
+    if (!toggle) return;
+    const active = !audio.paused && !audio.muted;
+    toggle.textContent = active ? "♫" : "♪";
+    toggle.classList.toggle("playing", active);
+  }
+
+  function tryPlay() {
+    audio.play().then(updateToggle).catch(updateToggle);
+  }
+  tryPlay();
+
+  // Autoplay is often blocked until the visitor interacts once; resume on the first click anywhere.
+  document.addEventListener("click", function resumeOnFirstClick() {
+    if (audio.paused) tryPlay();
+    document.removeEventListener("click", resumeOnFirstClick);
+  });
+
+  toggle?.addEventListener("click", () => {
+    if (audio.paused) {
+      tryPlay();
+    } else {
+      audio.muted = !audio.muted;
+      sessionStorage.setItem(MUTED_KEY, audio.muted ? "1" : "0");
+      updateToggle();
+    }
+  });
+
+  audio.addEventListener("play", updateToggle);
+  audio.addEventListener("pause", updateToggle);
+
+  setInterval(() => sessionStorage.setItem(TIME_KEY, String(audio.currentTime)), 500);
+  window.addEventListener("pagehide", () => sessionStorage.setItem(TIME_KEY, String(audio.currentTime)));
+}
+initBgMusic();
+
 // ---------- Active nav link ----------
 document.addEventListener("DOMContentLoaded", () => {
   const here = location.pathname.split("/").pop() || "index.html";
@@ -118,6 +168,7 @@ function initRsvp() {
       if (!res.ok) throw new Error("submission failed");
       form.classList.add("hidden");
       successEl.classList.remove("hidden");
+      new Audio("assets/wing-flap.mp3").play().catch(() => {});
     } catch {
       showError("The raven was lost in the mist. Please try again or contact us directly.");
       submitBtn.disabled = false;

@@ -43,6 +43,9 @@ a:hover { text-decoration: underline; }
 .site-nav a { color: var(--ink); text-decoration: none; padding: 0.25rem 0.5rem; border-bottom: 1.5px dashed transparent; }
 .site-nav a:hover { border-bottom-color: var(--seal); color: var(--seal); text-decoration: none; }
 .site-nav a.active { color: var(--seal); border-bottom-color: var(--seal); }
+.music-toggle { display: inline-flex; align-items: center; justify-content: center; width: 1.8rem; height: 1.8rem; margin-left: 0.25rem; padding: 0; border: 1.5px solid var(--ink-soft); border-radius: 50%; background: transparent; color: var(--ink-soft); font-size: 0.9rem; line-height: 1; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+.music-toggle:hover { color: var(--seal); border-color: var(--seal); }
+.music-toggle.playing { color: var(--seal); border-color: var(--seal); }
 
 /* Cards */
 .parchment-card {
